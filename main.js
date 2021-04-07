@@ -106,18 +106,46 @@ ipcMain.on('updateData',(event,args)=>{
          });
 });
 
+//obtener categorias para setearlos en la ventana actualizacion producto
+ipcMain.on('getCategorysDB',(event,args)=>{
+    let queryString = 
+    `SELECT * FROM stocktaking.categorys ORDER BY (idCategory)`
+    connection.promise().query(queryString)
+    .then((results)=>{
+        let answer = results[0];
+        console.log(answer);
+             updateDataWindow.send('replyGetCategorysList',answer);
+    }).catch((err)=>{
+        console.log(err);
+             updateDataWindow.send('replyGetCategorysList','errorGetData');
+    });
+});
+
 //gestionar actualizacion
 ipcMain.on('updateThis',(event,args)=>{
     //proceso de actualizacion
-    console.log(`updating -> ${args}`)
-        //si todo va bien.
-        //createUnlockedWindow();
-         //systemUnlockedWindow.webContents.on('did-finish-load',()=>{
-             updateDataWindow.close();
-                 systemUnlockedWindow.show();
-                 //systemUnlockedWindow.webContents.send('welcomeData',args[1]);
-        //});    
+    console.log(`setting new values -> ${args}`)
+        let queryString = 
+        `UPDATE products SET name_=?,description_=?,stocks=?,idCategory=?
+         WHERE idProduct =?`
+        let filter = [args[0],args[1],args[2],args[3],args[4],args[5]];
+             connection.promise().query({
+                 sql:queryString,
+                 timeout:500
+             },filter).then(([results,fields])=>{
+                 console.log(results);
+                 updateDataWindow.send('replyQueryUpdate','succes');
+             }).catch((err)=>{
+                 console.log(err);
+                 updateDataWindow.send('replyQueryUpdate','error')
+             })
 });
+
+ipcMain.on('backAfterUpdateAnItem',(event,args) =>{
+     updateDataWindow.close();
+         systemUnlockedWindow.loadFile('./src/render/login/unlocked/unlocked.html');
+             systemUnlockedWindow.show();
+})
 
 //creacion de ventana - realizar pedido producto
 ipcMain.on('makeAnOrder',(event,args)=>{
@@ -132,13 +160,8 @@ ipcMain.on('makeAnOrder',(event,args)=>{
 ipcMain.on('makeAnOrderOfThis',(event,args)=>{
     //proceso de actualizacion
     console.log(`updatin this -> ${args}`);
-        //si todo va bien
-        //createUnlockedWindow();
-        //systemUnlockedWindow.webContents.on('did-finish-load',()=>{
             makeAnOrderWindow.close();
                 systemUnlockedWindow.show();
-                 //systemUnlockedWindow.webContents.send('welcomeData',args[1]);
-        //});
 })
 
 // todo acerca de -> login-register

@@ -39,6 +39,12 @@ contextBridge.exposeInMainWorld(
         loadDataFromDB:
         () => {ipcRenderer.send('loadInfoPlease')}
         ,
+        getCategorysFromDB:
+        () => {ipcRenderer.send('getCategorysDB')}
+        ,
+        backAfterUpdateAnItem:
+        () => {ipcRenderer.send('backAfterUpdateAnItem')}
+        ,
         //para manejar las respuestas, de cualquier canal, con cualquier argumento. ya que no se especifica explicitamente
         //el canal de comunicacion ni algun argumento en especifico.
         replyMain: 

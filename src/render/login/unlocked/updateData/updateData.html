@@ -17,40 +17,38 @@
         <div id="editInfoContainerElements">
                 <table id="tableContainerElementsUpdate" class="table table-dark table-hover">
                         <tbody id="tbodyUpdateElements">
-                            <thead>
-                                <td><img src="../../../../assets/img/updateData.png" alt="icon update data" width="40px" height="50px"></td>
-                                <td>EDITANDO INFORMACIÓN</td>
-                            </thead>
-                            <tr>
-                                <td class="labelUpdate">ID PRODUCTO</td>
-                                <td class="inputUpdate"><input id="idProduct" type="text" disabled></td>
-                            </tr>
-                            <tr>
-                                <td class="labelUpdate">NOMBRE</td>
-                                <td class="inputUpdate"><input id="nameP" type="text"></td>
-                            </tr>
-                            <tr>
-                                <td class="labelUpdate">DESCRIPCIÓN</td>
-                                <td class="inputUpdate"><input id="descriptionP" type="text"></td>
-                            </tr>
-                            <tr>
-                                <td class="labelUpdate">EXISTENCIAS</td>
-                                <td class="inputUpdate"><input id="stocksP" type="number"></td>
-                            </tr>
-                            <tr>
-                                <td class="labelUpdate">CATEGORÍA</td>
-                                <td class="inputUpdate">
-                                    <select name="" id="">
-                                        <option value="">OPCION UNO</option>
-                                        <option value="">OPCION DOS</option>
-                                        <option value="">OPCION TRES</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><button id="btnUndoChanges" class="btn btn-primary">DESHACER CAMBIOS</button></td>
-                                <td><button id="btnUpdateData_" class="btn btn-primary">GUARDAR CAMBIOS</button></td>
-                            </tr> 
+                            <form id="formUpdate">
+                                <thead>
+                                    <td><img src="../../../../assets/img/updateData.png" alt="icon update data" width="40px" height="50px"></td>
+                                    <td>EDITANDO INFORMACIÓN</td>
+                                </thead>
+                                <tr>
+                                    <td class="labelUpdate">ID PRODUCTO</td>
+                                    <td class="inputUpdate"><input id="idProduct" type="text" disabled></td>
+                                </tr>
+                                <tr>
+                                    <td class="labelUpdate">NOMBRE</td>
+                                    <td class="inputUpdate"><input id="nameP" type="text" onkeyup="mayus(this);" required></td>
+                                </tr>
+                                <tr>
+                                    <td class="labelUpdate">DESCRIPCIÓN</td>
+                                    <td class="inputUpdate"><input id="descriptionP" type="text" minlength="8" required></td>
+                                </tr>
+                                <tr>
+                                    <td class="labelUpdate">EXISTENCIAS</td>
+                                    <td class="inputUpdate"><input id="stocksP" type="number" min="0" required></td>
+                                </tr>
+                                <tr>
+                                    <td class="labelUpdate">CATEGORÍA</td>
+                                    <td class="inputUpdate">
+                                        <select name="" id="optionsCategorys"></select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><button id="btnUndoChanges" class="btn btn-primary">DESHACER CAMBIOS</button></td>
+                                    <td><button type="submit" id="btnUpdateData_" class="btn btn-primary">GUARDAR CAMBIOS</button></td>
+                                </tr> 
+                             </form>
                         </tbody>
                 </table>
         </div>

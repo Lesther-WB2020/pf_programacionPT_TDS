@@ -49,7 +49,7 @@ async function putDataInTable(idp,namep,description_,stocks,category){
             let currentUser = document.getElementById('currentUser').innerHTML;
             let actionConfirmed = confirm('¿Quieres actualizar los datos de este producto?')
                 if(actionConfirmed){
-                    window.comunication.updateData([btnUpdateData.id,currentUser]);
+                    window.comunication.updateData([idp,namep,description_,stocks,category,currentUser]);
                 }
         });
 

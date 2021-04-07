@@ -1,5 +1,5 @@
 body{
-    background-color: black;
+    background-color: rgb(37, 37, 38);
 }
 #conteiner{
     width: 100%;
@@ -16,7 +16,7 @@ body{
     width: 100%;
     height: 80%;
     margin-top: 13.2%;
-    background-color: gray;
+    background-color: rgb(37, 37, 38);
     position: absolute;
     text-align: center;
 }
