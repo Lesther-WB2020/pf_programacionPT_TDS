@@ -27,12 +27,12 @@ document.getElementById('formUpdate').addEventListener('submit',(event)=>{
                         }
 });
 
-document.getElementById('btnUndoChanges').addEventListener('click',()=>{
+document.getElementById('btnUndoChanges').addEventListener('click',(event)=>{
     event.preventDefault();
-    let actionConfirmed = confirm('¿ESTAS SEGUR@ QUE DESEAS DESHACER LOS CAMBIOS?')
-        if(actionConfirmed){
+     let actionConfirmed = confirm('¿ESTAS SEGUR@ QUE DESEAS DESHACER LOS CAMBIOS?')
+         if(actionConfirmed){
             setCurrentValues(argsProduct);
-        }
+         }
 });
 
 //esto se ejecuta al momento de crearce la ventana.
@@ -43,12 +43,13 @@ window.comunication.replyMain('updateThis',(event,args)=>{
 });
 
 async function setCurrentValues(args){
-    console.log(`function setcurrentvalues ->  ${args}`)
+    //idp,namep,description_,stocks,category,currentUser,idc]
+    console.log(`function setcurrentvalues ->  ${argsProduct[6]}`)
     document.getElementById('idProduct').value = args[0];
     document.getElementById('nameP').value = args[1];
     document.getElementById('descriptionP').value = args[2];
     document.getElementById('stocksP').value = args[3];
-    document.ready = document.getElementById('optionsCategorys').text = args[4];
+    document.ready = document.getElementById("optionsCategorys").value = argsProduct[6];
     document.getElementById('currentUser').innerHTML = args[5];
 }
 

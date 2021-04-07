@@ -25,18 +25,20 @@ window.comunication.replyMain('replyLoadInfo',(event,args)=>{
         let description_ = '';  
         let stocks = 0;
         let category = '';
+        let idc = '';
         for(let i=0;i<nElementos;i++){
             idp = args[i]['idp'];
             namep = args[i]['namep'];
             description_ = args[i]['description_'];
             stocks = args[i]['stocks'];
             category = args[i]['category']
-                putDataInTable(idp,namep,description_,stocks,category);
+            idc = args[i]['idc'];
+                putDataInTable(idp,namep,description_,stocks,category,idc);
         }
     }
 });
 
-async function putDataInTable(idp,namep,description_,stocks,category){
+async function putDataInTable(idp,namep,description_,stocks,category,idc){
     //creacion del boton para gestionar actualizacion de cada producto
     let btnUpdateData = document.createElement('input');
     
@@ -49,7 +51,7 @@ async function putDataInTable(idp,namep,description_,stocks,category){
             let currentUser = document.getElementById('currentUser').innerHTML;
             let actionConfirmed = confirm('¿Quieres actualizar los datos de este producto?')
                 if(actionConfirmed){
-                    window.comunication.updateData([idp,namep,description_,stocks,category,currentUser]);
+                    window.comunication.updateData([idp,namep,description_,stocks,category,currentUser,idc]);
                 }
         });
 

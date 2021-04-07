@@ -83,7 +83,7 @@ function createUpdateDataWindow(){
 //cargar la data al table del documento unlocked.html automaticamente
 ipcMain.on('loadInfoPlease',(event,args)=>{
     let queryString = 
-     `SELECT p.idProduct AS 'idp', p.name_ AS 'namep',p.description_,p.stocks,c.name_ AS 'category'
+     `SELECT p.idProduct AS 'idp', p.name_ AS 'namep',p.description_,p.stocks,c.name_ AS 'category', c.idCategory AS 'idc'
       FROM products AS p
       INNER JOIN categorys AS c ON p.idCategory=c.idCategory ORDER BY(p.idProduct)`
          connection.promise().query(queryString)
