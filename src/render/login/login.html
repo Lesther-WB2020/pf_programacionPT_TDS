@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+         <meta charset="UTF-8">
+         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+         <link rel="stylesheet" href="../../assets/login.css">
+         <title>INICIAR SESIÓN</title>
+</head>
+<body>
+        <div id="container">
+                <table id="tableLogin" class="table table-dark table-hover">
+                        <tbody id="tbodyLogin">
+                                <form id="formLogIn">
+                                        <thead>
+                                                <td class="inputLabel"></td>
+                                                <td class="inputElement">
+                                                         <img src="../../assets/img/iconLogin.png" alt="ICON LOGIN">
+                                                </td>
+                                                <td class="inputError"></td>
+                                        </thead>
+                                        <tr>
+                                                <td class="inputLabel">USUARIO</td>
+                                                <td class="inputElement">
+                                                         <input id="userInput" class="input" type="text" placeholder="manuel777" required>
+                                                </td>
+                                                <td class="inputError"></td>
+                                        </tr>
+                                        <tr>
+                                                <td class="inputLabel">CONTRASEÑA</td>
+                                                <td class="inputElement">
+                                                         <input id="userPass" class="input" type="password" placeholder="myPass20_" required>
+                                                </td>
+                                                <td class="inputError"></td>
+                                        </tr>
+                                        <tr>
+                                               <td class="inputLabel"></td>
+                                               <td class="inputElement">
+                                                         <button id="btnLogIn" type="submit" class="btn btn-primary">INICIAR SESIÓN</button>
+                                               </td>
+                                               <td class="inputError"></td>
+                                        </tr>
+                                </form>
+                        </tbody>
+               </table>
+        </div>
+         <script src="./login.js"></script>
+</body>
+</html>

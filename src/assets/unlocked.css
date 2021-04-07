@@ -1,0 +1,63 @@
+body{
+    background-color: black;
+}
+#conteiner{
+    width: 100%;
+    height: 100%;
+}
+/*div, donde se coloca la imagen representacion de usuario y el nombre del usuario actual*/
+#infoSession{
+    width: 100%;
+    height: 20%;
+    position: absolute;
+}
+/*resto del div container que no se ocupa, para colocar la lista de los productos*/
+#containerListProducts{
+    width: 100%;
+    height: 80%;
+    margin-top: 13.2%;
+    background-color: gray;
+    position: absolute;
+    text-align: center;
+}
+/*porcentajes con respecto al div: infoSession*/
+#imgRepresentationUser{
+    width: 15%;
+    height: 100%;
+    background-image: url('./img/iconCurrentUser.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    background-color: lightseagreen;
+    float: left;
+    position: absolute;
+}
+/*porcentajes con respecto al div: infoSession*/
+#infoCurrentUser{
+    width: 85%;
+    height: 100%;
+    background-color: rgb(133, 255, 249);
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#tableProducts{
+    width: 100%;    
+}
+.nameP{
+    width: 20;
+}
+.descriptionP{
+    width: 40%;
+}
+.stocksP{
+    width: 5%;
+}
+.categoryP{
+    width: 20%;
+}   
+.optionsP{
+    width: 15%;
+}

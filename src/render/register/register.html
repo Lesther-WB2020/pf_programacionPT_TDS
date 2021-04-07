@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../assets/register.css">
+    <title>REGISTRAR USUARIO</title>
+</head>
+<body>
+        <div id="container">
+            <table id="tableLogin" class="table table-dark table-hover">
+                    <tbody id="tbodyLogin">
+                            <form id="formRegister">
+                                    <thead>
+                                            <td class="inputLabel"></td>
+                                            <td class="inputElement">
+                                                    <img src="../../assets/img/iconLogin.png" alt="ICON LOGIN">
+                                            </td>
+                                            <td class="inputError"></td>
+                                    </thead>
+                                    <tr>
+                                            <td class="inputLabel">USUARIO</td>
+                                            <td class="inputElement">
+                                                    <input id="userInput" class="input" type="text" placeholder="juan_77" required>
+                                            </td>
+                                            <td class="inputError"></td>
+                                    </tr>
+                                    <tr>
+                                            <td class="inputLabel">CONTRASEÑA</td>
+                                            <td class="inputElement">
+                                                    <input id="passInput" class="input" type="password" placeholder="myPass20_" minlength="10" required>
+                                            </td>
+                                            <td class="inputError"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="inputLabel">NOMBRE</td>
+                                        <td class="inputElement">
+                                                <input id="nameInput" class="input" type="text" placeholder="Juan" onkeyup="mayus(this);" pattern="[A-Z]{0,25}" required>
+                                        </td>
+                                        <td class="inputError"></td>
+                                    </tr>                                  
+                                `   <tr>
+                                        <td class="inputLabel">PRIMER APELLIDO</td>
+                                        <td class="inputElement">
+                                                <input id="fSurnameInput" class="input" type="text" placeholder="Rodríguez" onkeyup="mayus(this);" pattern="[A-Z]{0,25}"required>
+                                        </td>
+                                        <td class="inputError"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="inputLabel">SEGUNDO APELLIDO</td>
+                                        <td class="inputElement">
+                                                <input id="sSurnameInput" class="input" type="text" placeholder="Juárez" onkeyup="mayus(this);" pattern="[A-Z]{0,25}" required>
+                                        </td>
+                                        <td class="inputError"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="inputLabel">CÓDIGO DE SEGURIDAD</td>
+                                        <td class="inputElement">
+                                                <input id="securityCode" class="input" type="password" required>
+                                        </td>
+                                        <td class="inputError"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="inputLabel"></td>
+                                        <td class="inputElement">
+                                                    <button id="btnLogIn" type="submit" class="btn btn-primary">REGISTRAR</button>
+                                        </td>
+                                        <td class="inputError"></td>
+                                    </tr>
+                            </form>
+                    </tbody>
+            </table>
+        </div>
+</body>
+    <script src="./register.js"></script>
+</html>
