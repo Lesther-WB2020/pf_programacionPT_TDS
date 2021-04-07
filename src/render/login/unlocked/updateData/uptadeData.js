@@ -38,13 +38,13 @@ document.getElementById('btnUndoChanges').addEventListener('click',(event)=>{
 //esto se ejecuta al momento de crearce la ventana.
 window.comunication.replyMain('updateThis',(event,args)=>{
     argsProduct = args;
-    console.log(argsProduct);
+    //console.log(argsProduct);
     setCurrentValues(argsProduct);
 });
 
 async function setCurrentValues(args){
     //[idp,namep,description_,stocks,category,currentUser,idc]
-    console.log(`function setcurrentvalues ->  ${argsProduct[6]}`)
+    //console.log(`function setcurrentvalues ->  ${argsProduct[6]}`)
     document.getElementById('idProduct').value = args[0];
     document.getElementById('nameP').value = args[1];
     document.getElementById('descriptionP').value = args[2];
@@ -56,6 +56,9 @@ async function setCurrentValues(args){
 //repuesta hacia la peticion de la lista de categorias al momento de crear la vetanna
 window.comunication.replyMain('replyGetCategorysList',(event,args)=>{
     //console.log(args);
+    if(args=='errorGetData'){
+        alert('HUBO UN ERROR AL OBTENER LAS CATEGORÍAS, CIERRA ESTA VENTANA PARA EVITAR MÁS INCONVENIENTES');
+    }else{
     //obtengo el select
     let select = document.getElementById('optionsCategorys');
     let nElementos = args.length;
@@ -64,16 +67,18 @@ window.comunication.replyMain('replyGetCategorysList',(event,args)=>{
             let option = document.createElement('option');
             option.setAttribute('value',args[i]['idCategory']);
             option.innerHTML =  args[i]['name_'];
-                //eventualmente los agrego al select.
+                //eventualmente lo agrego al select.
                 select.appendChild(option); 
         }
+    }
+
 });
 
 window.comunication.replyMain('replyQueryUpdate',(event,args)=>{
     // En este caso, sé con certeza que podría dispararse un error porque el nombre del producto ya existe
     // aunque también podriá ser por factores ajenos
     if(args=='error'){
-        alert('YA HAY UN PRODUCTO CON EL MISMO NOMBRE, VALIDALO CON UN ADMINISTRADOR.');
+        alert('YA HAY UN PRODUCTO CON EL MISMO NOMBRE, VALÍDALO CON UN ADMINISTRADOR.');
     }else if(args=='succes'){
         let backOtherWindow = confirm('ACTUALIZACIÓN EFECTUADA CON ÉXITO')
             if((backOtherWindow)||(!backOtherWindow)){

@@ -9,7 +9,46 @@
     <title>HACER PEDIDO</title>
 </head>
 <body>
-        <h1 id="currentUser"></h1>
+        <div id="container">
+               <div id="infoSession">
+                     <div id="imgRepresentationUser"></div>
+                     <div id="infoCurrentUser"><h2 id="currentUser"></h2></div>
+               </div>
+               <div id="makeAnOrderElements">
+                     <table id="tableContainerElementsMakeAnOrder" class="table table-dark table-hover">
+                            <tbody id="tbodyMakeAnOrderElements">
+                                    <form id="makeAnOrder">
+                                         <thead>
+                                             <td><img src="../../../../assets/img/makingAnOrder.png" alt="icon making an order" width="40px" height="50px"></td>
+                                             <td>REALIZANDO PEDIDO</td>
+                                         </thead>
+                                         <tr>
+                                            <td class="labelMakeAnOrder">ID PRODUCTO</td>
+                                            <td><input id="idProduct" type="text" class="inputMakeAnOrder" disabled></td>
+                                        </tr>
+                                        <tr>
+                                             <td class="labelMakeAnOrder">NOMBRE DEL PRODUCTO</td>
+                                             <td><input id="namep" type="text" class="inputMakeAnOrder" readonly></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="labelMakeAnOrder">PROVEEDORES</td>
+                                            <td>
+                                                <select id="optionsProviders" class="inputMakeAnOrder" required></select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="labelMakeAnOrder">CANTIDAD A SOLICITAR</td>
+                                            <td><input id="quantityP" type="number" class="inputMakeAnOrder" min="1" value="1" required></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2"><input type="submit" class="btn btn-primary" value="SOLICITAR PRODUCTO"></td>
+                                        </tr>
+                                    </form>
+                            </tbody>
+                     </table>
+               </div>               
+        </div>
+
         <h1 id="idProductToMakeAnOrder"></h1>
         <button id="btnMakeAnOrder_" class="btn btn-primary">HACER PEDIDO</button>
         <script src="./makeAnOrder.js"></script>

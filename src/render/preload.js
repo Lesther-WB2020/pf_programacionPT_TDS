@@ -39,11 +39,19 @@ contextBridge.exposeInMainWorld(
         loadDataFromDB:
         () => {ipcRenderer.send('loadInfoPlease')}
         ,
+        //traer las categorias de la db y setearlos en el select (ventana update product)
         getCategorysFromDB:
         () => {ipcRenderer.send('getCategorysDB')}
         ,
+        //despues de haber tenido una actualizacion exitosa, regresemos a la ventana anterior.
         backAfterUpdateAnItem:
         () => {ipcRenderer.send('backAfterUpdateAnItem')}
+        ,
+        getProvidersFromDB:
+        (objectData) => {ipcRenderer.send('getProvidersDB',objectData)}
+        ,
+        backAfterMakeAnOrder:
+        () => {ipcRenderer.send('backAfterMakeAnOrder')}
         ,
         //para manejar las respuestas, de cualquier canal, con cualquier argumento. ya que no se especifica explicitamente
         //el canal de comunicacion ni algun argumento en especifico.

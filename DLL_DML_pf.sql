@@ -131,8 +131,9 @@ CREATE TABLE IF NOT EXISTS `supermarket2021`.`orders` (
   `idProduct` INT NOT NULL,
   `idProvider` INT NOT NULL,
   `quantity` INT NOT NULL,
+  `dateTime_` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `pending` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`idOrder`),
-  UNIQUE INDEX `idProvider_UNIQUE` (`idProvider` ASC) VISIBLE,
   INDEX `fk_orders_products1_idx` (`idProduct` ASC) VISIBLE,
   CONSTRAINT `fk_orders_products1`
     FOREIGN KEY (`idProduct`)
@@ -141,11 +142,12 @@ CREATE TABLE IF NOT EXISTS `supermarket2021`.`orders` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
- 
+
   -- -----------------------------------------------------
 -- INSERTS FOR TESTS -> `supermarket2021`.`securitycodes`
 -- -----------------------------------------------------
@@ -181,54 +183,71 @@ INSERT INTO `supermarket2021`.`providers`(name_,direction,contactNumber,mail,web
 ('Ocean Naturals S.A.','Direccion de Ocean Naturals','8246582465','ocean@naturals.com','wwww.oceannaturals.com'),
 ('La Sirena S.A.','Direccion de La Sirena','46824682','contacto@lasirena.com','wwww.lasirena.com'),
 ('Chicken Sea S.A.','Direccion de Chicken Sea','64649198','chickens@sea.com','wwww.chickenSea.com');
+-- EL PRODUCTO 1 (ATÚN), PODRÍA TENER POR EJEMPLO A LOS PROVEEDORES CUYO ID ES: 1,2,3
+INSERT INTO `supermarket2021`.`products_has_providers`(products_idProduct,providers_idProvider) VALUES
+(1,1),(1,2),(1,3);
 
 INSERT INTO `supermarket2021`.`providers`(name_,direction,contactNumber,mail,webSite) VALUES
 ('Las Manzanas S.A.','Direccion de Las Manzanas S.A.','4682465','las@manzanas.com','wwww.manzanassa.com'),
 ('Frutas Corp.','Direccion de Frutas Corp','4682465','frutas@corp.com','wwww.frutascorp.com'),
 ('Finca Las Manzanas','Direccion de Finca Las Manzanas','284658','finca@lasmanzanas.com','wwww.finzalasmanzanas.com');
 
+INSERT INTO `supermarket2021`.`products_has_providers`(products_idProduct,providers_idProvider) VALUES
+(2,4),(2,5),(2,6);
+
 INSERT INTO `supermarket2021`.`providers`(name_,direction,contactNumber,mail,webSite) VALUES
 ('CocaCola S.A.','Direccion de CocaCola S.A.','28468249','contacto@cocacola.com','wwww.cocacola.com'),
 ('Embotelladora Guatemala','Direccion de Embotelladora Gt','468972498','contacto@embot.com','wwww.embot.com'),
 ('Distribuidora La Bendición','Direccion de Dis. La Bendicion','38794685','contacto@dislaben.com','wwww.distlabendicion.com');
+
+INSERT INTO `supermarket2021`.`products_has_providers`(products_idProduct,providers_idProvider) VALUES
+(3,7),(3,8),(3,9),(1,9);
 
 INSERT INTO `supermarket2021`.`providers`(name_,direction,contactNumber,mail,webSite) VALUES
 ('LackyMen S.A.','Direccion de LackyMen S.A.','7982186','contacto@lackymen.com','wwww.lackymen.com'),
 ('Maruchan S.A.','Direccion de Maruchan S.A.','468972498','contacto@maruchan.com','wwww.maruchan.com'),
 ('Soup Easy S.A.','Direccion de Soup Easy S.A.','38794685','contacto@easy.com','wwww.soupeasy.com');
 
+INSERT INTO `supermarket2021`.`products_has_providers`(products_idProduct,providers_idProvider) VALUES
+(4,10),(4,11),(4,12);
+
 INSERT INTO `supermarket2021`.`providers`(name_,direction,contactNumber,mail,webSite) VALUES
 ('XEDEX S.A.','Direccion de Xedex S.A.','7982186','contacto@xedex.com','wwww.xedex.com'),
 ('Drive S.A.','Direccion de Drive S.A.','468972498','contacto@drivesa.com','wwww.drivesa.com'),
 ('Omo S.A.','Direccion de Omo S.A.','38794685','contacto@omosa.com','wwww.omosa.com');
+
+INSERT INTO `supermarket2021`.`products_has_providers`(products_idProduct,providers_idProvider) VALUES
+(5,13),(5,14),(5,15);
 
 INSERT INTO `supermarket2021`.`providers`(name_,direction,contactNumber,mail,webSite) VALUES
 ('Fud S.A.','Direccion de Fud S.A.','7982186','contacto@fud.com','wwww.fud.com'),
 ('Toledo S.A.','Direccion de Toledo S.A.','468972498','contacto@toledo.com','wwww.toledo.com'),
 ('Premier S.A.','Direccion de Premier S.A.','38794685','contacto@premier.com','wwww.premier.com');
 
+INSERT INTO `supermarket2021`.`products_has_providers`(products_idProduct,providers_idProvider) VALUES
+(6,16),(6,17),(6,18);
+
 INSERT INTO `supermarket2021`.`providers`(name_,direction,contactNumber,mail,webSite) VALUES
 ('Colgate Guatemala S.A.','Direccion de Colgate Guatemala S.A.','7982186','contacto@colgate.com.gt','wwww.colgate.com'),
 ('Dentalados S.A.','Direccion de Dentalados S.A.','468972498','contacto@dentalados.com','wwww.dentalados.com'),
 ('Muela Feliz S.A.','Direccion de Muela Feliz S.A.','38794685','contacto@muelafeliz.com','wwww.muelafeliz.com');
+
+INSERT INTO `supermarket2021`.`products_has_providers`(products_idProduct,providers_idProvider) VALUES
+(7,19),(7,20),(7,21);
 
 INSERT INTO `supermarket2021`.`providers`(name_,direction,contactNumber,mail,webSite) VALUES
 ('Frontline S.A.','Direccion de Frontline S.A.','4682344','contacto@frontline.com','wwww.frontline.com'),
 ('CachoHappy S.A.','Direccion de CachoHappy S.A.','2846568','contacto@cachohappy.com','wwww.cachohappy.com'),
 ('Shooter S.A.','Direccion de Shooter S.A.','4683882','contacto@shooter.com','wwww.shooter.com');
 
+INSERT INTO `supermarket2021`.`products_has_providers`(products_idProduct,providers_idProvider) VALUES
+(8,22),(8,23),(8,24);
+
 INSERT INTO `supermarket2021`.`providers`(name_,direction,contactNumber,mail,webSite) VALUES
 ('JackDaniels Tenesse','Direccion de JackDaniels S.A.','468246','contacto@jackdaniels.com','wwww.jackdaniels.com'),
 ('Licoreria El Durmiente','Direccion de licoreria El Durmiente','468248','contacto@eldurmiente.com','wwww.eldurmiente.com'),
 ('Wiskey Premium S.A.','Direccion de Wiskey Premium S.A.','4683882','contacto@wpremium.com','wwww.wpremium.com');
 
-
-
-
-
-
-
-
-
-
+INSERT INTO `supermarket2021`.`products_has_providers`(products_idProduct,providers_idProvider) VALUES
+(9,25),(9,26),(9,27);
 

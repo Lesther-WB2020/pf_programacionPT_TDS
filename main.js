@@ -1,4 +1,4 @@
-const{app, BrowserWindow} = require('electron');
+const{app, BrowserWindow, ipcRenderer} = require('electron');
 // para comunicarnos con el render-preload
 const {ipcMain} = require('electron');
 // para encriptar textos planos.
@@ -101,7 +101,7 @@ ipcMain.on('updateData',(event,args)=>{
     createUpdateDataWindow();
          updateDataWindow.webContents.on('did-finish-load',()=>{
              systemUnlockedWindow.hide();
-                 console.log(`enviando para actualizar -> ${args}`)
+                 //console.log(`enviando para actualizar -> ${args}`)
                  updateDataWindow.webContents.send('updateThis',args);
          });
 });
@@ -109,14 +109,14 @@ ipcMain.on('updateData',(event,args)=>{
 //obtener categorias para setearlos en la ventana actualizacion producto
 ipcMain.on('getCategorysDB',(event,args)=>{
     let queryString = 
-    `SELECT * FROM stocktaking.categorys ORDER BY (idCategory)`
+    `SELECT * FROM supermarket2021.categorys ORDER BY (idCategory)`
     connection.promise().query(queryString)
     .then((results)=>{
         let answer = results[0];
-        console.log(answer);
+        //console.log(answer);
              updateDataWindow.send('replyGetCategorysList',answer);
     }).catch((err)=>{
-        console.log(err);
+        //console.log(err);
              updateDataWindow.send('replyGetCategorysList','errorGetData');
     });
 });
@@ -124,7 +124,7 @@ ipcMain.on('getCategorysDB',(event,args)=>{
 //gestionar actualizacion
 ipcMain.on('updateThis',(event,args)=>{
     //proceso de actualizacion
-    console.log(`setting new values -> ${args}`)
+    //console.log(`setting new values -> ${args}`)
         let queryString = 
         `UPDATE products SET name_=?,description_=?,stocks=?,idCategory=?
          WHERE idProduct =?`
@@ -133,10 +133,10 @@ ipcMain.on('updateThis',(event,args)=>{
                  sql:queryString,
                  timeout:500
              },filter).then(([results,fields])=>{
-                 console.log(results);
+                 //console.log(results);
                  updateDataWindow.send('replyQueryUpdate','succes');
              }).catch((err)=>{
-                 console.log(err);
+                 //console.log(err);
                  updateDataWindow.send('replyQueryUpdate','error')
              })
 });
@@ -152,17 +152,76 @@ ipcMain.on('makeAnOrder',(event,args)=>{
     createMakeAnOrderWindow();
          makeAnOrderWindow.webContents.on('did-finish-load',()=>{
             systemUnlockedWindow.hide();
-                console.log(`enviando para hacer pedido -> ${args}`)
+                //console.log(`enviando para hacer pedido -> ${args}`)
                     makeAnOrderWindow.webContents.send('makeAnOrderOfThis',args);
          });
 });
 
+//obtener proveedores del producto, para la ventana de pedidos.
+ipcMain.on('getProvidersDB',(event,args) =>{
+    let queryString = 
+     `SELECT prov.idProvider AS 'idProv', prov.name_ AS 'nameProvider'
+     FROM supermarket2021.products AS prod
+     INNER JOIN products_has_providers AS php_ ON  php_.products_idProduct = prod.idProduct
+     INNER JOIN providers AS prov ON prov.idProvider = php_.providers_idProvider
+     WHERE prod.idProduct=?`
+        //console.log(args);
+        let filter = [args];
+            connection.promise().query({
+                 sql:queryString,
+                 timeout: 500
+            },filter).then(([results,fields])=>{
+                 //console.log(results);
+                 makeAnOrderWindow.webContents.send('replyGetProvidersList',results);
+            }).catch((err)=>{
+                 //console.log(err);
+                 makeAnOrderWindow.webContents.send('replyGetProvidersList','errorGetData');
+            });
+
+});
+
+//proceso de cómo se gestionan los pedidos.
 ipcMain.on('makeAnOrderOfThis',(event,args)=>{
-    //proceso de actualizacion
-    console.log(`updatin this -> ${args}`);
-            makeAnOrderWindow.close();
-                systemUnlockedWindow.show();
-})
+    //args = [idProduct,idProvider,quantity]
+    //primero tengo que validar que no existan pedidos con el mismo producto y proveedor
+    let queryString = `SELECT count(*) FROM supermarket2021.orders WHERE idProduct=? AND idProvider=? AND pending=1`
+        let filters = [args[0],args[1]];
+            connection.promise().query({
+                sql:queryString,
+                timeout:500
+            },filters).then(([results,fields])=>{
+                let orderExists = results[0]['count(*)'];
+                    //console.log(orderExists)
+                     if(orderExists>0){
+                         //esto devolvera el numero de registros que encuentre con el mismo id tanto de producto como de proveedor
+                         //y que eventualemtente esté pendiente de atender (pending=1).
+                         //console.log('ya hay un pedido con el mismo producto y mismo proveedor')
+                             makeAnOrderWindow.webContents.send('replyMakingAnOrderOfThis','alreadyExistsOrder');
+                     }else{
+                         //console.log('adelante, puedes hacer tu pedido')
+                             let queryString_ = `INSERT INTO supermarket2021.orders(idProduct,idProvider,quantity) VALUES(?,?,?)`
+                                  connection.promise().query({
+                                     sql:queryString_,
+                                     timeout:500
+                                  },args).then(([results,fields])=>{
+                                         //console.log(results[0]);
+                                         //console.log(results);
+                                             makeAnOrderWindow.webContents.send('replyMakingAnOrderOfThis','success');   
+                                  }).catch((err)=>{
+                                         console.log(err);
+                                             makeAnOrderWindow.webContents.send('replyMakingAnOrderOfThis','ErrorRegisterOrder');   
+                                  });
+                    }
+            }).catch((err)=>{
+                //console.log(err);
+                    makeAnOrderWindow.webContents.send('replyMakingAnOrderOfThis','errorValidateOrder');
+            });
+});
+
+ipcMain.on('backAfterMakeAnOrder',(event,args)=>{
+     makeAnOrderWindow.close();
+         systemUnlockedWindow.show();
+});
 
 // todo acerca de -> login-register
 ipcMain.on('validateData',(event, args)=>{
@@ -184,7 +243,7 @@ ipcMain.on('validateData',(event, args)=>{
                                 } else if(same){ 
                                     //pasar a la siguiente ventana {restringida}
                                     let currentUser = `USUARIO ACTUAL:  ${completeName}`;
-                                    console.log(currentUser);
+                                    //console.log(currentUser);
                                         createUnlockedWindow();
                                         systemUnlockedWindow.webContents.on('did-finish-load',()=>{
                                             loginWindow.hide();
@@ -205,7 +264,7 @@ ipcMain.on('registerData',(event,args) => {
 
 ipcMain.on('changeToLogin',(event,args)=>{
     loginWindow.loadFile('./src/render/login/login.html');
-})
+});
 
 ipcMain.on('registerWorker',(event,args)=>{
     //corroborar código de seguridad, en este caso asumo que hay otro sistema en el cual se generen dichos

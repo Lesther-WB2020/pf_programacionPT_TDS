@@ -1,0 +1,61 @@
+body{
+    background-color: rgb(37, 37, 38);
+}
+#conteiner{
+    width: 100%;
+    height: 100%;
+}
+/*div, donde se coloca la imagen representacion de usuario y el nombre del usuario actual*/
+#infoSession{
+    width: 100%;
+    height: 20%;
+    position: absolute;
+}
+/*resto del div container que no se ocupa, para colocar los elementos para realizar pedido*/
+#makeAnOrderElements{
+    width: 100%;
+    height: 80%;
+    margin-top: 13.2%;
+    background-color: rgb(37, 37, 38);
+    position: absolute;
+    text-align: center;
+}
+/*porcentajes con respecto al div: infoSession*/
+#imgRepresentationUser{
+    width: 15%;
+    height: 100%;
+    background-image: url('./img/iconCurrentUser.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    background-color: lightseagreen;
+    float: left;
+    position: absolute;
+}
+/*porcentajes con respecto al div: infoSession*/
+#infoCurrentUser{
+    width: 85%;
+    height: 100%;
+    background-color: rgb(133, 255, 249);
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#tableContainerElementsMakeAnOrder{
+    position: absolute;
+    margin-left: 15%;
+    top: 18%;
+    width: 70%;
+}
+/*PORCENTAJES CON RESPECTO AL ANCHO DEL TABLE.*/
+.labelMakeAnOrder{
+    width: 50%;
+}
+/*PORCENJAE CON RESPECTO AL ANCHO DE LA COLUMNA DE ELEMENTOS INPUT*/
+.inputMakeAnOrder{
+    width: 80%;
+    text-align: center;
+}

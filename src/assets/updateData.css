@@ -1,5 +1,5 @@
 body{
-    background-color: rgb(37, 37, 38);
+    background-color: gray;
 }
 #conteiner{
     width: 100%;
@@ -45,9 +45,24 @@ body{
     justify-content: center;
 }
 
+/*PORCENTAJE CN RESPECTO AL ANCHO DEL DIV CONTENEDOR DE LA TABLA*/
 #tableContainerElementsUpdate{
     position: absolute;
     margin-left: 15%;
     top: 14%;
     width: 70%;
+}
+#idProduct,#nameP,#stocksP{
+    text-align: center;
+}
+/*PORCENTAJE CON RESPECTO AL ANCHO DE LA TABLA*/
+.labelUpdate{
+    width: 45%;
+}
+.inputUpdate{
+    width: 55%;
+}
+/*PORCENTAJE CON RESPECTO AL ANCHO DE LA COLUMNA*/
+input,select,option{
+    width: 80%;
 }

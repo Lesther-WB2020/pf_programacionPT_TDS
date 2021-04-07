@@ -66,11 +66,11 @@ async function putDataInTable(idp,namep,description_,stocks,category,idc){
             let currentUser = document.getElementById('currentUser').innerHTML;
             let actionConfirmed = confirm('¿Quieres realizar un pedido de este producto?')
                 if(actionConfirmed){    
-                    window.comunication.makeAnOrder([btnUpdateData.id,currentUser]);
+                    window.comunication.makeAnOrder([idp,namep,currentUser]);
                 }
         });       
 
-     //si hay -> 0 existencias del producto, significa que no es existente y por ende no se debe de mostrar en la lista de productos existentes
+     //si hay -> 0 existencias del producto, significa que no es existente y por ende no se debe de mostrar en la lista de productos <<existentes>>
      if(stocks!=0){
             //creo una fila que contendra el item actual    
         let row_ = document.createElement('tr');
