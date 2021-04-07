@@ -111,11 +111,12 @@ ipcMain.on('updateThis',(event,args)=>{
     //proceso de actualizacion
     console.log(`updating -> ${args}`)
         //si todo va bien.
-        createUnlockedWindow();
-         systemUnlockedWindow.webContents.on('did-finish-load',()=>{
+        //createUnlockedWindow();
+         //systemUnlockedWindow.webContents.on('did-finish-load',()=>{
              updateDataWindow.close();
-                 systemUnlockedWindow.webContents.send('welcomeData',args[1]);
-        });    
+                 systemUnlockedWindow.show();
+                 //systemUnlockedWindow.webContents.send('welcomeData',args[1]);
+        //});    
 });
 
 //creacion de ventana - realizar pedido producto
@@ -132,11 +133,12 @@ ipcMain.on('makeAnOrderOfThis',(event,args)=>{
     //proceso de actualizacion
     console.log(`updatin this -> ${args}`);
         //si todo va bien
-        createUnlockedWindow();
-        systemUnlockedWindow.webContents.on('did-finish-load',()=>{
+        //createUnlockedWindow();
+        //systemUnlockedWindow.webContents.on('did-finish-load',()=>{
             makeAnOrderWindow.close();
-                 systemUnlockedWindow.webContents.send('welcomeData',args[1]);
-        });
+                systemUnlockedWindow.show();
+                 //systemUnlockedWindow.webContents.send('welcomeData',args[1]);
+        //});
 })
 
 // todo acerca de -> login-register
