@@ -15,7 +15,7 @@ const connection = mysql.createConnection({
     host: 'localhost',
     user: 'xitumul',
     password: 'galileo2021',
-    database: 'stocktaking'
+    database: 'supermarket2021'
 }); 
 
 //ventanas

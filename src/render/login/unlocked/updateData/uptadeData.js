@@ -43,7 +43,7 @@ window.comunication.replyMain('updateThis',(event,args)=>{
 });
 
 async function setCurrentValues(args){
-    //idp,namep,description_,stocks,category,currentUser,idc]
+    //[idp,namep,description_,stocks,category,currentUser,idc]
     console.log(`function setcurrentvalues ->  ${argsProduct[6]}`)
     document.getElementById('idProduct').value = args[0];
     document.getElementById('nameP').value = args[1];
