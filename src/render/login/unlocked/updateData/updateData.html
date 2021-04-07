@@ -9,10 +9,52 @@
     <title>ACTUALIZAR PRODUCTO</title>
 </head>
 <body>
-        <h1 id="idProduct"></h1>
-        <h1 id="currentUser"></h1>
-        <button id="btnUndoChanges" class="btn btn-primary">DESHACER CAMBIOS</button>
-        <button id="btnUpdateData_" class="btn btn-primary">GUARDAR CAMBIOS</button>
+    <div id="conteiner">
+        <div id="infoSession">
+            <div id="imgRepresentationUser"></div>
+            <div id="infoCurrentUser"><h2 id="currentUser"></h2></div>
+        </div>
+        <div id="editInfoContainerElements">
+                <table id="tableContainerElementsUpdate" class="table table-dark table-hover">
+                        <tbody id="tbodyUpdateElements">
+                            <thead>
+                                <td><img src="../../../../assets/img/updateData.png" alt="icon update data" width="40px" height="50px"></td>
+                                <td>EDITANDO INFORMACIÓN</td>
+                            </thead>
+                            <tr>
+                                <td class="labelUpdate">ID PRODUCTO</td>
+                                <td class="inputUpdate"><input id="idProduct" type="text" disabled></td>
+                            </tr>
+                            <tr>
+                                <td class="labelUpdate">NOMBRE</td>
+                                <td class="inputUpdate"><input id="nameP" type="text"></td>
+                            </tr>
+                            <tr>
+                                <td class="labelUpdate">DESCRIPCIÓN</td>
+                                <td class="inputUpdate"><input id="descriptionP" type="text"></td>
+                            </tr>
+                            <tr>
+                                <td class="labelUpdate">EXISTENCIAS</td>
+                                <td class="inputUpdate"><input id="stocksP" type="number"></td>
+                            </tr>
+                            <tr>
+                                <td class="labelUpdate">CATEGORÍA</td>
+                                <td class="inputUpdate">
+                                    <select name="" id="">
+                                        <option value="">OPCION UNO</option>
+                                        <option value="">OPCION DOS</option>
+                                        <option value="">OPCION TRES</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><button id="btnUndoChanges" class="btn btn-primary">DESHACER CAMBIOS</button></td>
+                                <td><button id="btnUpdateData_" class="btn btn-primary">GUARDAR CAMBIOS</button></td>
+                            </tr> 
+                        </tbody>
+                </table>
+        </div>
+    </div>
         <script src="./uptadeData.js"></script>
 </body>
 </html>

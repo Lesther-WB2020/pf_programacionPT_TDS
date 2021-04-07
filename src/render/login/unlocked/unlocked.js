@@ -49,7 +49,7 @@ async function putDataInTable(idp,namep,description_,stocks,category){
             let currentUser = document.getElementById('currentUser').innerHTML;
             let actionConfirmed = confirm('¿Quieres actualizar los datos de este producto?')
                 if(actionConfirmed){
-                    window.comunication.updateData([`id del producto -> ${btnUpdateData.id}`,currentUser]);
+                    window.comunication.updateData([btnUpdateData.id,currentUser]);
                 }
         });
 
@@ -64,7 +64,7 @@ async function putDataInTable(idp,namep,description_,stocks,category){
             let currentUser = document.getElementById('currentUser').innerHTML;
             let actionConfirmed = confirm('¿Quieres realizar un pedido de este producto?')
                 if(actionConfirmed){    
-                    window.comunication.makeAnOrder([`id del producto -> ${btnUpdateData.id}`,currentUser]);
+                    window.comunication.makeAnOrder([btnUpdateData.id,currentUser]);
                 }
         });       
 
